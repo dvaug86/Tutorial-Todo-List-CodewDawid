@@ -29,29 +29,39 @@ function App() {
     });
   };
 
-const getMessage = () => {
-  const percentage = numberComplete/numberTotal * 100
-  if(percentage === 0){
-    return 'Try to get one!'
-  }
-  if(percentage ===100){
-    return 'Congrats!'
-  }
-return 'Keep on going!'
-}
+  const getMessage = () => {
+    const percentage = (numberComplete / numberTotal) * 100;
+    if (percentage === 0) {
+      return "Try to get one!";
+    }
+    if (percentage === 100) {
+      return "Congrats!";
+    }
+    return "Keep on going!";
+  };
 
+  const removeTask = (indexToRemove) => {
+    setTasks((prev) => {
+      return prev.filter((taskObject, index) => index !== indexToRemove);
+    });
+  };
 
-
-const numberComplete=tasks.filter(t => t.done).length
-const numberTotal = tasks.length
+  const numberComplete = tasks.filter((t) => t.done).length;
+  const numberTotal = tasks.length;
 
   return (
     <main>
-      <h1>{numberComplete}/{numberTotal} Complete</h1>
+      <h1>
+        {numberComplete}/{numberTotal} Complete
+      </h1>
       <h2>{getMessage()}</h2>
       <TaskForm onAdd={addTask} />
       {tasks.map((task, index) => (
-        <Task {...task} onToggle={(done) => updateTaskDone(index, done)} />
+        <Task
+          {...task}
+          onTrash={() => removeTask(index)}
+          onToggle={(done) => updateTaskDone(index, done)}
+        />
       ))}
     </main>
   );
