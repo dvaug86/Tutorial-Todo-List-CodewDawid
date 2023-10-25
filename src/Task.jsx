@@ -7,7 +7,7 @@ const Task = ({ name, done, onToggle, onTrash, onRename }) => {
     <div className={"task " + (done ? "done" : "")}>
       <Checkbox checked={done} onClick={() => onToggle(!done)} />
       {!editMode && (
-        <div className="task-name" onClick={() =>setEditMode(prev => !prev)}>
+        <div className="task-name" onClick={() => setEditMode((prev) => !prev)}>
           <span>{name}</span>
         </div>
       )}
