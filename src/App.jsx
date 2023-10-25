@@ -46,6 +46,14 @@ function App() {
     });
   };
 
+  const renameTask = (index, newName) => {
+    setTasks((prev) => {
+      const newTasks = [...prev];
+      newTasks[index].name = newName;
+      return newTasks;
+    });
+  };
+
   const numberComplete = tasks.filter((t) => t.done).length;
   const numberTotal = tasks.length;
 
@@ -59,6 +67,7 @@ function App() {
       {tasks.map((task, index) => (
         <Task
           {...task}
+          onRename={(newName) => renameTask(index, newName)}
           onTrash={() => removeTask(index)}
           onToggle={(done) => updateTaskDone(index, done)}
         />
