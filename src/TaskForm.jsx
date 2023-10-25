@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 
-const TaskForm = () => {
+const TaskForm = ({onAdd}) => {
   const [taskName, setTaskName] = useState("");
-
+const handleSubmint = e =>{
+  e.preventDefault();
+  onAdd(taskName)
+  setTaskName('')
+}
   return (
-    <form>
+    <form onSubmit={handleSubmint}>
       <button>+</button>
       <input
         type="text"
