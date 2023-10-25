@@ -30,6 +30,13 @@ function App() {
   };
 
 const getMessage = () => {
+  const percentage = numberComplete/numberTotal * 100
+  if(percentage === 0){
+    return 'Try to get one!'
+  }
+  if(percentage ===100){
+    return 'Congrats!'
+  }
 return 'Keep on going!'
 }
 
